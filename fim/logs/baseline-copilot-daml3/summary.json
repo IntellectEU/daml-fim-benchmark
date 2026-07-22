@@ -1,0 +1,36 @@
+{
+  "run_name": "Daml 3 \u2014 GitHub Copilot",
+  "model": "GitHub Copilot",
+  "dataset": "undisclosed",
+  "dataset_version": "vpublic-daml3",
+  "total_examples": 2579,
+  "exact_match_rate": 0.28383094222566885,
+  "prefix_match_rate": 0.03450949980612641,
+  "repo_scores": [
+    {
+      "repo": "canton",
+      "exact_match_rate": 0.29102564102564105,
+      "prefix_match_rate": 0.038461538461538464,
+      "total_examples": 780,
+      "in_domain": null,
+      "domain": "unknown"
+    },
+    {
+      "repo": "splice",
+      "exact_match_rate": 0.28071150639244025,
+      "prefix_match_rate": 0.032795997776542525,
+      "total_examples": 1799,
+      "in_domain": null,
+      "domain": "unknown"
+    }
+  ],
+  "total_repo_average": 0.2858685737090406,
+  "in_domain_repo_average": null,
+  "out_of_domain_repo_average": null,
+  "total_repo_prefix_average": 0.03562876811904049,
+  "in_domain_repo_prefix_average": null,
+  "out_of_domain_repo_prefix_average": null,
+  "in_domain_repo_count": 0,
+  "out_of_domain_repo_count": 0,
+  "train_repo_count": null
+}

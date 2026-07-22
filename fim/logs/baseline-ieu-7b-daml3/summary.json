@@ -1,0 +1,75 @@
+{
+  "run_name": "Daml 3 \u2014 Qwen2.5-Coder-7B-IEU-finetune",
+  "model": "Qwen2.5-Coder-7B-IEU-finetune",
+  "dataset": "cv",
+  "dataset_version": "vpublic-daml3",
+  "total_examples": 2579,
+  "syntax_checkable_examples": 0,
+  "by_category": {},
+  "by_source": {},
+  "repo_scores": [
+    {
+      "repo": "canton",
+      "exact_match_rate": 0.36923076923076925,
+      "prefix_match_rate": 0.02564102564102564,
+      "total_examples": 780,
+      "in_domain": null,
+      "domain": "mixed"
+    },
+    {
+      "repo": "splice",
+      "exact_match_rate": 0.3148971650917176,
+      "prefix_match_rate": 0.021122846025569762,
+      "total_examples": 1799,
+      "in_domain": null,
+      "domain": "mixed"
+    }
+  ],
+  "total_repo_average": 0.34206396716124343,
+  "in_domain_repo_average": 0.34780184147888427,
+  "out_of_domain_repo_average": 0.3363260928436026,
+  "total_repo_prefix_average": 0.0233819358332977,
+  "in_domain_repo_prefix_average": 0.026053648038083833,
+  "out_of_domain_repo_prefix_average": 0.02071022362851157,
+  "in_domain_repo_count": 2,
+  "out_of_domain_repo_count": 2,
+  "train_repo_count": null,
+  "cv_subruns": [
+    {
+      "index": 1,
+      "eval_run_id": "baseline-ieu-7b-daml3-fold1",
+      "holdout_repos": [
+        "canton"
+      ],
+      "train_repos": [
+        "splice"
+      ],
+      "exact_match_rate": 0.3303606048856146,
+      "prefix_match_rate": 0.02365257851880574
+    },
+    {
+      "index": 2,
+      "eval_run_id": "baseline-ieu-7b-daml3-fold2",
+      "holdout_repos": [
+        "splice"
+      ],
+      "train_repos": [
+        "canton"
+      ],
+      "exact_match_rate": 0.33229934082977897,
+      "prefix_match_rate": 0.021326095385808454
+    }
+  ],
+  "cv_subrun_run_ids": [
+    "baseline-ieu-7b-daml3-fold1",
+    "baseline-ieu-7b-daml3-fold2"
+  ],
+  "exact_match_rate": 0.3313299728576968,
+  "prefix_match_rate": 0.022489336952307096,
+  "empty_response_rate": null,
+  "predicted_syntax_pass_rate": null,
+  "original_syntax_pass_rate": null,
+  "syntax_original_file_pass_rate": null,
+  "syntax_in_domain_pass_rate": null,
+  "syntax_out_of_domain_pass_rate": null
+}

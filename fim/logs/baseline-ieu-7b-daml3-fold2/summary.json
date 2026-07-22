@@ -1,0 +1,46 @@
+{
+  "run_id": "baseline-ieu-7b-daml3-fold2",
+  "run_name": "Daml 3 \u2014 Qwen2.5-Coder-7B-IEU-finetune [fold 2/2]",
+  "model": "Qwen2.5-Coder-7B-IEU-finetune (fold 2)",
+  "dataset": "all",
+  "dataset_version": "vpublic-daml3",
+  "total_examples": 2579,
+  "exact_match_rate": 0.33229934082977897,
+  "prefix_match_rate": 0.021326095385808454,
+  "repo_scores": [
+    {
+      "repo": "canton",
+      "exact_match_rate": 0.3782051282051282,
+      "prefix_match_rate": 0.028205128205128206,
+      "total_examples": 780,
+      "in_domain": true,
+      "domain": "in_domain"
+    },
+    {
+      "repo": "splice",
+      "exact_match_rate": 0.3123957754307949,
+      "prefix_match_rate": 0.018343524180100056,
+      "total_examples": 1799,
+      "in_domain": false,
+      "domain": "out_of_domain"
+    }
+  ],
+  "total_repo_average": 0.34530045181796154,
+  "in_domain_repo_average": 0.3782051282051282,
+  "out_of_domain_repo_average": 0.3123957754307949,
+  "total_repo_prefix_average": 0.02327432619261413,
+  "in_domain_repo_prefix_average": 0.028205128205128206,
+  "out_of_domain_repo_prefix_average": 0.018343524180100056,
+  "in_domain_repo_count": 1,
+  "out_of_domain_repo_count": 1,
+  "train_repo_count": 1,
+  "cv_parent_run_id": "baseline-ieu-7b-daml3",
+  "cv_subrun_index": 2,
+  "cv_subrun_count": 2,
+  "cv_train_repos": [
+    "canton"
+  ],
+  "cv_holdout_repos": [
+    "splice"
+  ]
+}

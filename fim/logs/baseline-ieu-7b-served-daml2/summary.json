@@ -1,0 +1,44 @@
+{
+  "run_name": "Daml 2 — Qwen2.5-Coder-7B-IEU-finetune (served)",
+  "model": "Qwen2.5-Coder-7B-IEU-finetune (served)",
+  "dataset": "ood",
+  "dataset_version": "vpublic-daml2",
+  "total_examples": 4914,
+  "exact_match_rate": 0.21265771265771266,
+  "prefix_match_rate": 0.02197802197802198,
+  "repo_scores": [
+    {
+      "repo": "account-hierarchy",
+      "exact_match_rate": 0.14534883720930233,
+      "prefix_match_rate": 0.023255813953488372,
+      "total_examples": 172,
+      "in_domain": false,
+      "domain": "out_of_domain"
+    },
+    {
+      "repo": "daml-finance",
+      "exact_match_rate": 0.2102496714848883,
+      "prefix_match_rate": 0.021243977222952255,
+      "total_examples": 4566,
+      "in_domain": false,
+      "domain": "out_of_domain"
+    },
+    {
+      "repo": "ex-models",
+      "exact_match_rate": 0.3409090909090909,
+      "prefix_match_rate": 0.03977272727272727,
+      "total_examples": 176,
+      "in_domain": false,
+      "domain": "out_of_domain"
+    }
+  ],
+  "total_repo_average": 0.2321691998677605,
+  "in_domain_repo_average": null,
+  "out_of_domain_repo_average": 0.2321691998677605,
+  "total_repo_prefix_average": 0.028090839483055966,
+  "in_domain_repo_prefix_average": null,
+  "out_of_domain_repo_prefix_average": 0.028090839483055966,
+  "in_domain_repo_count": 0,
+  "out_of_domain_repo_count": 3,
+  "train_repo_count": 0
+}

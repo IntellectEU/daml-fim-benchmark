@@ -1,0 +1,49 @@
+[project]
+name = "daml-fim-benchmark"
+version = "0.1.0"
+description = "Benchmark for Daml fill-in-the-middle (FIM) code autocompletion: evaluation engine, metrics, and a web UI."
+requires-python = ">=3.10"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+dependencies = [
+    "tqdm>=4.66",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "openai>=1.0",          # OpenAI / vLLM OpenAI-compatible provider
+    "requests>=2.31",
+]
+
+[project.optional-dependencies]
+# Local model serving / tokenization (HuggingFace + vLLM evaluation paths).
+serving = [
+    "torch>=2.1",
+    "transformers>=4.40",
+    "peft>=0.10",
+    "safetensors>=0.4",
+    "tiktoken>=0.6",
+]
+# FastAPI results/run-management server behind the web UI.
+server = [
+    "fastapi>=0.110",
+    "pydantic>=2.0",
+    "uvicorn>=0.29",
+]
+# Test suite. Does not require the GPU `serving` extra: all torch/transformers/
+# vLLM imports in the package are lazy, so the tests import every module with
+# just core + server installed. Run with `.[server,test]`.
+test = [
+    "pytest>=8.0",
+    "httpx>=0.27",   # FastAPI TestClient transport
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/daml_fim_benchmark"]

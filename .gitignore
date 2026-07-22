@@ -1,0 +1,51 @@
+_gitignored/
+
+# Python
+# Not committed: installs use `uv pip install` / `pip install` against pyproject
+# extras (the serving extras are torch/CUDA-specific, so a single lock isn't portable).
+uv.lock
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# Env / secrets
+.env
+.env.*
+
+# Node / frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+npm-debug.log*
+
+# Editor
+.idea/
+.vscode/
+
+# Benchmark run outputs (generated locally)
+mlruns/
+logs/
+data/logs/
+
+# ...except the published baseline runs under fim/logs/, which ship with the repo.
+!fim/logs/
+fim/logs/*
+!fim/logs/baseline-*/
+
+# Source repos fetched by scripts/checkout_source_repos.sh for the optional
+# syntax pass-rate metric — cloned locally, never committed (several GB).
+sources/
+
+# Local experiment config (copy experiment.example.py to this and edit)
+experiment.py

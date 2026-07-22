@@ -1,0 +1,1 @@
+Daml 2 — GitHub Copilot: GitHub Copilot on the account-hierarchy, daml-finance, ex-models repos of the vpublic test split (full, no per-repo cap). Exact-match on the masked span. General-purpose assistant baseline.

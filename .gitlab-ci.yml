@@ -1,0 +1,16 @@
+stages:
+  - test
+
+variables:
+  UV_LINK_MODE: "copy"
+
+# Runs the pytest suite on every push. Installs core + server + test extras only
+# (the GPU `serving` extra is not needed — all torch/vLLM imports are lazy), so
+# the suite needs no GPU, vLLM, or Daml toolchain.
+python_tests:
+  stage: test
+  image: ghcr.io/astral-sh/uv:python3.12-trixie-slim
+  script:
+    - uv venv
+    - uv pip install -e '.[server,test]'
+    - uv run pytest

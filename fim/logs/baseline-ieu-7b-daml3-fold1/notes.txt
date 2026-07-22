@@ -1,0 +1,1 @@
+Fold 1/2 of the cross-validated Qwen2.5-Coder-7B-IEU-finetune evaluation on the Daml-3 repos of the vpublic test split. This fold's model was trained with splice in-domain; canton was held out of training and scored out-of-domain. Evaluated at FP8 (fp8_per_block), matching the serving setup.

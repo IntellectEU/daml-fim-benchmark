@@ -1,0 +1,66 @@
+{
+  "note": "Daml FIM benchmark \u2014 evaluation (test) split. Covers only Apache-2.0 source repositories (account-hierarchy, canton, daml, daml-finance, ex-models, splice). Deliberately-non-compiling Daml fixtures (@ERROR/@WARN) are excluded. Each example is tagged with metadata.daml_version (\"2.x\", \"3.x\", or \"unknown\").",
+  "repos": [
+    "account-hierarchy",
+    "canton",
+    "daml",
+    "daml-finance",
+    "ex-models",
+    "splice"
+  ],
+  "examples": {
+    "total": 10261,
+    "syntax": 1308,
+    "random": 8953,
+    "by_daml_version": {
+      "2.x": 4931,
+      "3.x": 2624,
+      "unknown": 2706
+    }
+  },
+  "syntax_by_category": {
+    "choice_body": 108,
+    "data_type": 337,
+    "ensure": 32,
+    "instance_body": 50,
+    "interface_body": 45,
+    "key": 40,
+    "maintainer": 41,
+    "observer": 116,
+    "script_body": 83,
+    "signatory": 309,
+    "template_body": 147
+  },
+  "per_repo": {
+    "account-hierarchy": {
+      "total": 172,
+      "syntax": 31,
+      "random": 141
+    },
+    "canton": {
+      "total": 780,
+      "syntax": 223,
+      "random": 557
+    },
+    "daml": {
+      "total": 2768,
+      "syntax": 570,
+      "random": 2198
+    },
+    "daml-finance": {
+      "total": 4566,
+      "syntax": 258,
+      "random": 4308
+    },
+    "ex-models": {
+      "total": 176,
+      "syntax": 30,
+      "random": 146
+    },
+    "splice": {
+      "total": 1799,
+      "syntax": 196,
+      "random": 1603
+    }
+  }
+}

@@ -1,0 +1,314 @@
+/*
+ * Global, app-wide styles for the FIM Benchmark UI: base typography/colours, page
+ * layout, and the custom classes used by the runs table, result/diff views, and
+ * other bits that Ant Design's defaults don't cover. Loaded once from main.tsx.
+ */
+:root {
+  color: #0f172a;
+  background: #f1f5f9;
+  font-family: "IBM Plex Sans", "Segoe UI", sans-serif;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  background:
+    radial-gradient(1200px 500px at 10% -10%, rgba(14, 165, 233, 0.16), transparent),
+    radial-gradient(1000px 700px at 95% 0%, rgba(245, 158, 11, 0.13), transparent),
+    #f1f5f9;
+}
+
+.app-shell {
+  padding: 20px;
+}
+
+.model-pill {
+  display: inline-block;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  border-radius: 8px;
+  padding: 2px 8px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+}
+
+.dataset-version-pill {
+  display: inline-block;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.72em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  line-height: 1.2;
+}
+
+.notes-cell {
+  display: -webkit-box;
+  max-width: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  white-space: normal;
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.notes-cell-clickable {
+  cursor: text;
+  border-radius: 6px;
+  padding: 0 4px;
+}
+
+.notes-cell-clickable:hover {
+  background: rgba(71, 85, 105, 0.12);
+}
+
+.notes-inline-input {
+  width: 100%;
+  max-width: 260px;
+}
+
+.notes-tooltip-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.label-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.column-picker-menu {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  padding: 12px;
+  min-width: 220px;
+  max-height: 420px;
+  overflow: auto;
+}
+
+.detail-filter-menu {
+  min-width: 180px;
+}
+
+.detail-filter-menu .ant-dropdown-menu {
+  max-height: 320px;
+  overflow: auto;
+}
+
+.detail-filter-header-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  color: inherit;
+}
+
+.detail-filter-header-btn:hover {
+  color: #2563eb;
+}
+
+.detail-filter-header-value {
+  max-width: 92px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 6px;
+  border-radius: 999px;
+  border: 1px solid #bfdbfe;
+  background: #eff6ff;
+  color: #1d4ed8;
+  font-size: 0.8em;
+  line-height: 1.4;
+}
+
+.score-header-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  line-height: 1.05;
+}
+
+.score-header-wrap strong {
+  display: block;
+  width: 100%;
+  text-align: center;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.05;
+}
+
+.score-header-subtext {
+  font-size: 0.72em;
+  color: #6b7280;
+  line-height: 1.05;
+  font-weight: 400;
+}
+
+.score-cell-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  line-height: 1.05;
+}
+
+.score-cell-dual-badge {
+  gap: 3px;
+}
+
+.score-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.score-badge-label {
+  min-width: 22px;
+  text-align: right;
+  font-size: 0.64em;
+  color: #64748b;
+  letter-spacing: 0.02em;
+}
+
+.score-adjust-tooltip {
+  max-width: 340px;
+  line-height: 1.35;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ant-table-tbody > tr > td.score-cell-emphasis-border {
+  box-shadow: inset 0 0 0 2px #dc2626;
+}
+
+/* Compare modal: the row holding each run's red-outlined comparison number. */
+.compare-emphasis-row td {
+  background: #fef2f2 !important;
+  font-weight: 600;
+}
+
+.score-pill {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 8px;
+  font-weight: 600;
+  border: 1px solid transparent;
+}
+
+.score-pill-id {
+  border: 4.5px solid #2563eb;
+}
+
+.score-pill-ood {
+  border: 4.5px solid #03fcf4;
+}
+
+.score-subtext {
+  font-size: 0.72em;
+  color: #6b7280;
+  line-height: 1.05;
+}
+
+.cv-toggle-placeholder {
+  display: inline-flex;
+  width: 24px;
+  min-width: 24px;
+  justify-content: center;
+  color: #64748b;
+}
+
+.cv-child-run-id {
+  opacity: 0.92;
+}
+
+.cv-child-row td {
+  background: rgb(240, 248, 252) !important;
+}
+
+.ant-table-thead > tr > th.repo-detail-header {
+  background: #e5e7eb !important;
+  border-top: 1px solid #c7ccd4 !important;
+  border-bottom: 1px solid #c7ccd4 !important;
+}
+
+.ant-table-tbody > tr > td.repo-detail-cell {
+  background: #e5e7eb !important;
+}
+
+.ant-table-thead > tr > th.repo-detail-header-start,
+.ant-table-tbody > tr > td.repo-detail-cell-start {
+  border-left: 1px solid #c7ccd4 !important;
+}
+
+.ant-table-thead > tr > th.repo-detail-header-end,
+.ant-table-tbody > tr > td.repo-detail-cell-end {
+  border-right: 1px solid #c7ccd4 !important;
+}
+
+.pinned-boundary-row td {
+  border-bottom: 4px solid #475569 !important;
+  box-shadow: inset 0 -3px 0 0 #475569;
+}
+
+.result-row-selected td {
+  background: #e0f2fe !important;
+}
+
+.code-preview {
+  margin: 6px 0 0 0;
+  max-height: 180px;
+  overflow: auto;
+  background: #0b1220;
+  color: #dbeafe;
+  border-radius: 8px;
+  padding: 10px;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Menlo, monospace;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.detail-code-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  align-items: start;
+}
+
+.detail-code-col {
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .detail-code-pair {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make table selection feel immediate (avoid default Ant animation lag). */
+.ant-checkbox .ant-checkbox-inner,
+.ant-checkbox .ant-checkbox-inner::after,
+.ant-table-tbody > tr.ant-table-row-selected > td {
+  transition: none !important;
+}

@@ -1,0 +1,1 @@
+Daml 3 — GitHub Copilot: GitHub Copilot on the canton, splice repos of the vpublic test split (full, no per-repo cap). Exact-match on the masked span. General-purpose assistant baseline.
