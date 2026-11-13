@@ -26,7 +26,7 @@ Entry points:
   summary dict. Call this directly to drive the benchmark from your own code.
 - :func:`main` — the CLI (``python -m daml_fim_benchmark.evaluate``). Build the
   experiment(s) from per-field flags (one per :class:`EvaluationConfig` field) or
-  load them from a ``--config`` Python file, expand any cross-validation folds,
+  load them from a ``--config`` Python or JSON file, expand any cross-validation folds,
   run each, and write an aggregated CV parent summary.
 """
 
@@ -1501,7 +1501,11 @@ def _cli_arg_specs() -> list[tuple[str, str, dict]]:
 
 def _load_experiments_from_file(path: str) -> list[EvaluationConfig]:
     """Load ``EXPERIMENT`` (an EvaluationConfig) or ``EXPERIMENTS`` (a list of them)
-    from a user-supplied Python config file."""
+    from a user-supplied Python config file, or one experiment from a ``.json``
+    file holding an object of EvaluationConfig fields."""
+    if path.endswith(".json"):
+        with open(path, encoding="utf-8") as f:
+            return [EvaluationConfig(**json.load(f))]
     spec = importlib.util.spec_from_file_location("daml_fim_benchmark._user_experiment", path)
     if spec is None or spec.loader is None:
         raise FileNotFoundError(f"Could not load config file: {path}")
@@ -1535,7 +1539,8 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument(
         "--config",
         metavar="PATH",
-        help=f"Python file defining EXPERIMENT (an EvaluationConfig) or EXPERIMENTS (a list); "
+        help=f"Python file defining EXPERIMENT (an EvaluationConfig) or EXPERIMENTS (a list), "
+        "or a .json file holding one object of EvaluationConfig fields; "
         f"defaults to {DEFAULT_CONFIG_FILE} when present. Mutually exclusive with the per-field flags.",
     )
     for flag, dest, kwargs in _cli_arg_specs():

@@ -179,7 +179,7 @@ def _remap_qwen35_adapter_keys_for_conditional(
     )
 
 
-def merge_adapter_for_vllm(adapter_dir: str, output_dir: Path, dtype: str) -> str:
+def merge_adapter_for_vllm(adapter_dir: str, output_dir: Path, dtype: str, trust_remote_code: bool = True) -> str:
     """Merge a LoRA adapter into its base model and write a full model dir for vLLM.
 
     Loads the adapter's base model at ``dtype``, applies the adapter
@@ -219,7 +219,7 @@ def merge_adapter_for_vllm(adapter_dir: str, output_dir: Path, dtype: str) -> st
     )
 
     dtype = getattr(torch, dtype_map[dtype])
-    base_config = AutoConfig.from_pretrained(base_model, trust_remote_code=True)
+    base_config = AutoConfig.from_pretrained(base_model, trust_remote_code=trust_remote_code)
     qwen35_conditional_merge = _is_qwen35_model_name(base_model)
     if qwen35_conditional_merge:
         print("Qwen3.5 adapter detected. Using conditional-model merge path for vLLM compatibility.")
@@ -233,7 +233,7 @@ def merge_adapter_for_vllm(adapter_dir: str, output_dir: Path, dtype: str) -> st
                 dtype=dtype,
                 device_map="cpu",
                 low_cpu_mem_usage=True,
-                trust_remote_code=True,
+                trust_remote_code=trust_remote_code,
             )
             model = PeftModel.from_pretrained(model, str(remapped_adapter))
             merged = model.merge_and_unload()
@@ -243,7 +243,7 @@ def merge_adapter_for_vllm(adapter_dir: str, output_dir: Path, dtype: str) -> st
             dtype=dtype,
             device_map="cpu",
             low_cpu_mem_usage=True,
-            trust_remote_code=True,
+            trust_remote_code=trust_remote_code,
         )
         model = PeftModel.from_pretrained(model, str(adapter_path))
         merged = model.merge_and_unload()
@@ -251,10 +251,10 @@ def merge_adapter_for_vllm(adapter_dir: str, output_dir: Path, dtype: str) -> st
     output_dir.mkdir(parents=True, exist_ok=True)
 
     merged.save_pretrained(str(output_dir), safe_serialization=True)
-    tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(base_model, trust_remote_code=trust_remote_code)
     tokenizer.save_pretrained(str(output_dir))
     if qwen35_conditional_merge:
-        processor = AutoProcessor.from_pretrained(base_model, trust_remote_code=True)
+        processor = AutoProcessor.from_pretrained(base_model, trust_remote_code=trust_remote_code)
         processor.save_pretrained(str(output_dir))
         processor_cfg = output_dir / "processor_config.json"
         preprocessor_cfg = output_dir / "preprocessor_config.json"
@@ -336,7 +336,12 @@ def resolve_vllm_launch_model(config: EvaluationConfig, output_dir: Path):
         merge_parent.mkdir(parents=True, exist_ok=True)
         merge_out_dir = merge_parent / f"temp_merged_model_for_vllm_{datetime.now().strftime('%y%m%d-%H%M%S')}"
         merge_start = time.perf_counter()
-        launch_model = merge_adapter_for_vllm(config.model_name, merge_out_dir, dtype=config.vllm_dtype)
+        launch_model = merge_adapter_for_vllm(
+            config.model_name,
+            merge_out_dir,
+            dtype=config.vllm_dtype,
+            trust_remote_code=config.vllm_trust_remote_code,
+        )
         merge_seconds = time.perf_counter() - merge_start
         merged_for_this_run = True
         return launch_model, merge_seconds, merged_for_this_run
@@ -396,8 +401,9 @@ def launch_vllm_server(
         str(config.vllm_max_model_len),
         "--max-num-seqs",
         str(effective_max_num_seqs),
-        "--trust-remote-code",
     ]
+    if config.vllm_trust_remote_code:
+        common_flags.append("--trust-remote-code")
     if config.vllm_quantization:
         common_flags.extend(["--quantization", config.vllm_quantization])
     tokenizer_name = (config.vllm_tokenizer_name or "").strip()

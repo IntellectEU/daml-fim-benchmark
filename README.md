@@ -44,6 +44,10 @@ Paths resolve against the benchmark root, which defaults to the current working 
 
 This benchmark publishes the **evaluation (test) split** (`syntax_test.jsonl` + `random_test.jsonl`). It ships in this repo, so the benchmark runs out of the box with no download.
 
+### Private subset
+
+A further part of the benchmark comes from private Daml codebases that cannot be redistributed. Model developers can have a model evaluated on it, with only aggregate metrics returned and the weights not retained: see [PRIVATE_EVALUATION.md](PRIVATE_EVALUATION.md).
+
 ### Daml 2 vs. Daml 3 subsets
 
 Every example is tagged with its Daml language version under `metadata.daml_version` (`"2.x"`, `"3.x"`, or `"unknown"` when no SDK version could be detected), so Daml-2 and Daml-3 results can be reported by filtering on that field — no separate dataset versions needed. The `unknown` bucket is non-trivial (no SDK version was detectable in the source file), so a `2.x` subset plus a `3.x` subset does not cover every example.

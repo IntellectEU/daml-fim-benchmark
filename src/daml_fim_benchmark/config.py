@@ -79,6 +79,7 @@ class EvaluationConfig:
     vllm_prefer_binary: bool                     = True                # Prefer external `vllm serve` over `python -m vllm`
     vllm_binary_path: str                        = "~/.local/bin/vllm"
     vllm_merge_parent_dir: str                   = "/tmp"
+    vllm_trust_remote_code: bool                 = True                # Allow custom modeling code from the model repo (vLLM and merge). Disable for untrusted submissions.
     vllm_use_lora_for_large_adapters: bool       = True                # For >=7B adapters, prefer vLLM LoRA over merge
     vllm_lora_min_model_size_b: float            = 7.0                 # LoRA-serve when base model size token >= this
     vllm_lora_module_name: str | None            = None                # Internal resolved LoRA module name

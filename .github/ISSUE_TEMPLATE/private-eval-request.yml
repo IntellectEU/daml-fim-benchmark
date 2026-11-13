@@ -1,0 +1,58 @@
+name: Private evaluation request
+description: Request a zero-retention evaluation of your model against the private benchmark subset.
+title: "[private-eval] "
+labels: ["private-eval"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Request an evaluation of your FIM model against a private subset of this
+        benchmark. Read [the private evaluation process](https://github.com/intellecteu/daml-fim-benchmark/blob/main/PRIVATE_EVALUATION.md) first: what we
+        need, what the model files may contain, what you get back, and how your
+        weights are never retained.
+
+        This issue is public. For a confidential request, contact us at
+        https://docs.catalyx.solutions/support-center/contact-support instead.
+  - type: input
+    id: model
+    attributes:
+      label: Model at a commit
+      description: The Hugging Face link to your model at the commit to evaluate. In the repo's "Files and versions" tab, open the commit from its history and copy the page's address.
+      placeholder: https://huggingface.co/your-org/your-daml-model/tree/<commit-hash>
+    validations:
+      required: true
+  - type: dropdown
+    id: prompt-style
+    attributes:
+      label: FIM prompt style
+      description: How your model expects fill-in-the-middle prompts.
+      options:
+        - Raw FIM tokens (base model)
+        - Chat template
+        - Not sure — details below
+    validations:
+      required: true
+  - type: textarea
+    id: notes
+    attributes:
+      label: Tokenizer / prompt notes
+      description: FIM token conventions, chat template details, anything else we need to serve the model correctly.
+  - type: dropdown
+    id: delivery
+    attributes:
+      label: Report delivery
+      description: The report contains aggregate metrics only ([what it contains](https://github.com/intellecteu/daml-fim-benchmark/blob/main/PRIVATE_EVALUATION.md#what-runs-and-what-you-get-back)). Posting it on this issue makes it public. To receive it privately, send us a contact through [our support channel](https://docs.catalyx.solutions/support-center/contact-support) and mention this issue. Do not post contact details on this issue.
+      options:
+        - Send it privately; I will send a contact through the support channel
+        - Post it publicly on this issue
+    validations:
+      required: true
+  - type: checkboxes
+    id: requirements
+    attributes:
+      label: Requirements
+      options:
+        - label: The repo meets the [requirements](https://github.com/intellecteu/daml-fim-benchmark/blob/main/PRIVATE_EVALUATION.md#requirements) — safetensors weights and plain-text metadata only, a standard vLLM-supported architecture, no custom modeling code (`trust_remote_code` / `auto_map`), no pickle checkpoints.
+          required: true
+        - label: I accept the [Private Evaluation Terms](https://github.com/intellecteu/daml-fim-benchmark/blob/main/TERMS.md). The [Privacy Notice](https://api.dca.catalyx.solutions/privacy) explains how we handle your personal data.
+          required: true
